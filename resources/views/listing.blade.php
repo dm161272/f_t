@@ -1,6 +1,15 @@
+@extends('layout')
 
-<h2>{{ $listing['title'] }}</h2>
+@section('content')
+@include('partials._search')
+
+<h2>{{ $listing['name  '] }}</h2>
 
 
-<p>{{ $listing['description'] }}</p>
+<p>{{ $listing['city'] }}</p>
 
+<p>{{ $listing['country'] }}</p>
+
+<a href="../">Back</a>
+
+@endsection
