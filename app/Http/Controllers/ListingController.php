@@ -9,10 +9,10 @@ class ListingController extends Controller
 {
     //show all listings
     public function index() {
-
+           // dd(request('tag'));
         return view('listings.index', [
-            'heading' => 'Latest listings',
-            'listings' => Listing::all()
+           
+        'listings' => Listing::latest()->filter(request(['search']))->get()
     
         ]);
 
@@ -26,4 +26,24 @@ class ListingController extends Controller
          ]);
         
     }
+
+
+    public function create() {
+      return view('listings.create');
+      }
+
+
+//store listing(team)
+      public function store(Request $request) {
+      //dd($request->all());
+      $formFields=$request->validate([
+        'name' => 'required',
+        'city' => 'required',
+        'country' => 'required',
+
+
+      ]);
+      }
+
+
 }

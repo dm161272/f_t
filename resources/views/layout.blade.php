@@ -33,15 +33,18 @@
             <ul class="flex space-x-6 mr-6 text-lg">
                 <li>
                     <a href="register.html" class="hover:text-laravel"
-                        ><i class="fa-solid fa-user-plus"></i>Register</a
-                    >
+                        ><i class="fa-solid fa-user-plus"></i>Register</a>
                 </li>
                 <li>
                     <a href="login.html" class="hover:text-laravel"
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        Login</a
-                    >
+                        Login</a>
                 </li>
+                <li>
+                    <a href="/listings/create" class="hover:text-laravel text-black py-2 px-5"><i class="fa-solid fa-people-group"></i>
+                        Add team</a>
+                </li>
+                
             </ul>
         </nav>
 
