@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
@@ -12,7 +13,7 @@ class ListingController extends Controller
            // dd(request('tag'));
         return view('listings.index', [
            
-        'listings' => Listing::latest()->filter(request(['search']))->get()
+        'listings' => Listing::latest()->filter(request(['search']))->paginate(6)
     
         ]);
 
@@ -37,13 +38,18 @@ class ListingController extends Controller
       public function store(Request $request) {
       //dd($request->all());
       $formFields=$request->validate([
-        'name' => 'required',
+      
+        'name' => ['required', Rule::unique('listings', 'name')],
         'city' => 'required',
         'country' => 'required',
-
-
       ]);
+
+      if($request->hasFile('logo')) {
+          $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+
       }
 
-
+      Listing::create($formFields);
+      return redirect('/')->with('message', '| Team created successfully |');
+   }
 }

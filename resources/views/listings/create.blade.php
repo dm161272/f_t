@@ -15,7 +15,7 @@ mt-24"
 
 </header>
 
-<form method="POST" action="/listings">
+<form method="POST" action="/listings" enctype="multipart/form-data">
     @csrf
     <div class="mb-6">
         <label
@@ -27,8 +27,12 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="name"
+            value="{{ old('name') }}"
             placeholder="Example: PHP Jedis"
         />
+        @error('name')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
     </div>
 
     <div class="mb-6">
@@ -39,8 +43,13 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="city"
+            value="{{ old('city') }}"
             placeholder="Example: Mos Espa"
         />
+        @error('city')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    
     </div>
 
     <div class="mb-6">
@@ -53,10 +62,21 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="country"
+            value="{{ old('country') }}"
             placeholder="Example: Tatooine"
         />
+        @error('country')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    
     </div>
 
+    <div class="mb-6">
+        <label for="logo" class="inline-block text-lg mb-2">
+          Team Logo
+        </label>
+        <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
+      </div>
    
 
     <div class="mb-6">
