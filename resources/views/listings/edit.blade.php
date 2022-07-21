@@ -7,16 +7,22 @@ class="p-10 rounded max-w-lg mx-auto
 mt-24"
 >
 <div class="flex flex-row justify-center items-center">
-    <div  class="text-2xl font-bold uppercase mb-6">Create a new s</div>
+    <div  class="text-2xl font-bold uppercase mb-6">Edit s</div>
 
     <div class="w-5 mb-6"><img src="{{ asset('images/soccerballnoshadow.svg') }}" alt="logo ball" class="logo"></div>
     <div class="text-2xl font-bold uppercase mb-6">ccer team</div>
+    
 </div>
+<div class="text-2xl text-center font-bold uppercase mb-6">
+    <p>{{$listing->name}}</p>
+</div>
+
 
 </header>
 
-<form action="/listings" method="POST" enctype="multipart/form-data">
+<form action="/listings/{{$listing->id}}" method="POST" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="mb-6">
         <label
             for="name"
@@ -27,7 +33,7 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="name"
-            value="{{ old('name') }}"
+            value="{{ $listing->name }}"
             placeholder="Example: PHP Jedis"
         />
         @error('name')
@@ -43,7 +49,7 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="city"
-            value="{{ old('city') }}"
+            value="{{ $listing->city }}"
             placeholder="Example: Mos Espa"
         />
         @error('city')
@@ -62,7 +68,7 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="country"
-            value="{{ old('country') }}"
+            value="{{ $listing->country }}"
             placeholder="Example: Tatooine"
         />
         @error('country')
@@ -83,7 +89,13 @@ mt-24"
         @enderror
       </div>
    
-
+      <div>
+        <img
+      class="hidden w-24 mx-auto md:block"
+     
+      src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/noimage.png')}}" alt=""/>
+      </div>
+      
     <div class="mb-6">
         <button
             class="bg-laravel text-white rounded py-2 px-4 hover:hover:bg-sky-600"

@@ -33,6 +33,10 @@
            
             <ul class="flex space-x-6 mr-6 text-lg">
                 <li>
+                    <a href="../" class="hover:text-laravel"
+                        ><i class="fa-solid fa-house"></i>Home</a>
+                </li>
+                <li>
                     <a href="register.html" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i>Register</a>
                 </li>
@@ -42,8 +46,12 @@
                         Login</a>
                 </li>
                 <li>
-                    <a href="/listings/create" class="hover:text-laravel text-black py-2 px-5"><i class="fa-solid fa-people-group"></i>
+                    <a href="/listings/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-people-group"></i>
                         Add team</a>
+                </li>
+                <li>
+                    <a href="/listings/{{$listing->id}}/edit" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-pencil"></i>
+                        Edit team</a>
                 </li>
                 
             </ul>
