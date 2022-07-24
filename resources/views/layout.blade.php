@@ -33,25 +33,43 @@
            
             <ul class="flex space-x-6 mr-6 text-lg">
                 <li>
-                    <a href="../" class="hover:text-laravel"
+                    <a href="/" class="hover:text-laravel"
                         ><i class="fa-solid fa-house"></i>Home</a>
                 </li>
+                @auth
                 <li>
-                    <a href="register.html" class="hover:text-laravel"
+                    <span class="font-bold uppercase">
+                        Welcome{{", " . auth()->user()->f_name . "  " .auth()->user()->l_name . "!"}}
+                    </span>
+                </li>     
+                @endauth
+                <li>
+                    <a href="/listings/manage" class="hover:text-laravel"
+                        ><i class="fa-solid fa-gear"></i>
+                        Manage teams</a>
+                </li>
+                <li>
+                    <form class="inline" method="POST" action="/logout">
+                    @csrf
+                    <button type="submit">
+                        <i class="fa-solid fa-door-open"></i>
+                        Logout
+                    </button>
+                </form>
+                </li>
+
+                <li>
+                    <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i>Register</a>
                 </li>
                 <li>
-                    <a href="login.html" class="hover:text-laravel"
+                    <a href="/login" class="hover:text-laravel"
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
                 </li>
                 <li>
                     <a href="/listings/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-people-group"></i>
                         Add team</a>
-                </li>
-                <li>
-                    <a href="/listings/{{$listing->id}}/edit" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-pencil"></i>
-                        Edit team</a>
                 </li>
                 
             </ul>

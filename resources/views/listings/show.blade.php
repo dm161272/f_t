@@ -25,11 +25,29 @@
                 </li>
             </ul>
                 </div>
+ 
+            </div>
+            <div class="flex flex-col items-end justify-center">
+            <div>
+                <a href="/listings/{{$listing->id}}/edit" 
+                class="text-black"><i class="fa-solid fa-pencil"></i>
+                Edit</a>
+
+            </div>
+            
+            <div>
+                <form method="POST" action="/listings/{{$listing->id}}">
+                 @csrf
+                @method('DELETE')
+                 <button class="text-red-500"><i class="fa-solid fa-trash"></i>
+                 Delete</button>
+                 </form>
+            </div>
             </div>
         </div>
 
     </x-card> 
-
+       
 </div>
 
 <a href="..\" class="inline-block text-black mt-4 ml-4"

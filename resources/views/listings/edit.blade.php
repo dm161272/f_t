@@ -20,7 +20,7 @@ mt-24"
 
 </header>
 
-<form action="/listings/{{$listing->id}}" method="POST" enctype="multipart/form-data">
+<form method="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-6">
@@ -102,7 +102,6 @@ mt-24"
         >
             Save
         </button>
-
         <a href="/" class="text-black ml-4"> Back </a>
     </div>
 </form>

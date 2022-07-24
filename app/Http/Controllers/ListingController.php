@@ -28,35 +28,40 @@ class ListingController extends Controller
         
     }
 
-
+    //show create form
     public function create() {
       return view('listings.create');
       }
 
 
-//store listing(team)
-      public function store(Request $request) {
-      //dd($request->all());
-      $formFields=$request->validate([
-        'name' => ['required', Rule::unique('listings', 'name')],
-        'city' => 'required',
-        'country' => 'required',
-      ]);
+    //store listing(team)
+  public function store(Request $request) {
+  //dd($request->all());
+  $formFields=$request->validate([
+    'name' => ['required', Rule::unique('listings', 'name')],
+    'city' => 'required',
+    'country' => 'required',
+  ]);
 
-       if($request->hasFile('logo')) {
-          $formFields['logo'] = $request->file('logo')->store('logos', 'public');
-        }
+   if($request->hasFile('logo')) {
+      $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+    }
+    
+    $formFields['user_id'] = auth()->id();
 
-      //dd($formFields);
-      Listing::create($formFields);
-      return redirect('/')->with('message', '| Team created successfully |');
-   }
+  //dd($formFields);
+  Listing::create($formFields);
+  return redirect('/')->with('message', '| Team created successfully |');
+}
 
+
+      
    //show Edit form
     public function edit(Listing $listing) {
       //dd($listing);
         return view('listings.edit' , ['listing' => $listing]);
     }
+
 
 
     //update listing(team)
@@ -72,9 +77,23 @@ class ListingController extends Controller
           $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
-           //dd($formFields);
-      $listing->create($formFields);
-      return back()->with('message', '| Team updated successfully |');
+    //dd($formFields);
+      $listing->update($formFields);
+      return redirect('/')->with('message', '| Team updated successfully |');
    }
+
+
+    //delete listing
+
+    public function destroy(Listing $listing) {
+    
+    $listing->delete();
+    return redirect('/')->with('message', '| Team deleted successfully |');
+    }
+
+
+
+
+
 
 }
