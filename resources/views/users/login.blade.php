@@ -48,7 +48,7 @@ class="p-10 rounded max-w-lg mx-auto mt-24">
     <div class="mb-6">
         <button
             type="submit"
-            class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+            class="bg-laravel text-white rounded py-2 px-4 hover:bg-sky-600"
         >
             Sign In
         </button>

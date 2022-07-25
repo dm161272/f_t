@@ -29,6 +29,12 @@
         <title>SOCCER TEAM MANAGEMENT</title>
     </head>
     <body class="mb-48">
+        <div class="bg-sky-500 text-white text-center font-bold uppercase mb-2 py-2">
+            @auth
+             
+                    Welcome{{", " . auth()->user()->f_name . "  " .auth()->user()->l_name . "!"}}  
+            @endauth
+        </div>
         <nav class="flex justify-end items-center mb-4">
            
             <ul class="flex space-x-6 mr-6 text-lg">
@@ -38,26 +44,15 @@
                 </li>
                 @auth
                 <li>
-                    <span class="font-bold uppercase">
-                        Welcome{{", " . auth()->user()->f_name . "  " .auth()->user()->l_name . "!"}}
-                    </span>
-                </li>     
-                @endauth
+                    <a href="/listings/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-people-group"></i>
+                        Add team</a>
+                </li>
                 <li>
                     <a href="/listings/manage" class="hover:text-laravel"
                         ><i class="fa-solid fa-gear"></i>
                         Manage teams</a>
                 </li>
-                <li>
-                    <form class="inline" method="POST" action="/logout">
-                    @csrf
-                    <button type="submit">
-                        <i class="fa-solid fa-door-open"></i>
-                        Logout
-                    </button>
-                </form>
-                </li>
-
+                @endauth
                 <li>
                     <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i>Register</a>
@@ -67,11 +62,17 @@
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
                 </li>
+                @auth
                 <li>
-                    <a href="/listings/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-people-group"></i>
-                        Add team</a>
+                    <form class="inline" method="POST" action="/logout">
+                    @csrf
+                    <button type="submit">
+                        <i class="fa-solid fa-door-open"></i>
+                        Logout
+                    </button>
+                </form>
                 </li>
-                
+                @endauth
             </ul>
         </nav>
 

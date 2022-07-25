@@ -13,7 +13,7 @@ mt-24"
     <div class="text-2xl font-bold uppercase mb-6">ccer team</div>
 </div>
 
-</header>
+
 
 <form action="/listings" method="POST" enctype="multipart/form-data">
     @csrf

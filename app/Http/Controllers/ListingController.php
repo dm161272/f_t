@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 
 class ListingController extends Controller
 {
@@ -66,7 +68,13 @@ class ListingController extends Controller
 
     //update listing(team)
     public function update(Request $request, Listing $listing) {
-      //dd($request->all());
+      
+      //check if user is an owner
+      if($listing->user_id != auth()->id()) {
+        abort(403, '| You are not authorized for this action |');
+      }
+
+
       $formFields=$request->validate([
         'name' => 'required',
         'city' => 'required',
@@ -86,12 +94,21 @@ class ListingController extends Controller
     //delete listing
 
     public function destroy(Listing $listing) {
-    
+      
+     //check if user is an owner
+     if($listing->user_id != auth()->id()) {
+      abort(403, '| You are not authorized for this action |');
+    }
     $listing->delete();
     return redirect('/')->with('message', '| Team deleted successfully |');
     }
 
+//Manage listing
+public function manage() {
+  return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
 
+
+}
 
 
 

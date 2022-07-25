@@ -38,6 +38,9 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])->middlew
 //Delete listing 
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
 
+//Manage listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])->name('login');
+
 //Single listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
@@ -55,16 +58,4 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
        
 //Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-
-
-/* testing route
-Route::get('/hello', function() {
-    return response('<h1>Hello World!</h1>', 200)
-    ->header('Content-Type', 'text/plain');
-});
-//testing route
-Route::get('/search', function(Request $request) {
-    //dd($request);
-   return ($request->name . '  ' . $request->city);
-});*/
 
