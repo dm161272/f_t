@@ -52,6 +52,16 @@
                         ><i class="fa-solid fa-gear"></i>
                         Manage teams</a>
                 </li>
+            
+                <li>
+                    <a href="/games/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-futbol"></i>
+                        Add match</a>
+                </li>
+                <li>
+                    <a href="/games/manage" class="hover:text-laravel"
+                        ><i class="fa-solid fa-ranking-star"></i>
+                        Manage matches</a>
+                </li>
                 @endauth
                 <li>
                     <a href="/register" class="hover:text-laravel"

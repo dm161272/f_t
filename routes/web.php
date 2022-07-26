@@ -11,13 +11,38 @@ DELETE	    delete listing              - destroy      comments.destroy
 */
 
 
-use App\Models\Listing;
-use Illuminate\Http\Request;
-use GuzzleHttp\Promise\Create;
-use PhpParser\Node\Expr\List_;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\GameController;
+
+//* **************** */
+//All games
+Route::get('/games', [GameController::class, 'index']);
+
+//Show create form
+Route::get('/games/create', [GameController::class, 'create'])->middleware('auth');
+
+//Store game data
+Route::post('/games', [GameController::class, 'store']);
+
+//Show edit form
+Route::get('/games/{game}/edit', [GameController::class, 'edit'])->middleware('auth');
+
+//Update game 
+Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth');
+
+//Delete game
+Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth');
+
+//Manage games
+Route::get('/games/manage', [GameController::class, 'manage'])->name('login');
+
+//Single game
+Route::get('/games/{game}', [GameController::class, 'show']);
+
+
+/* **************** */
 
 
 //All listings
@@ -43,6 +68,8 @@ Route::get('/listings/manage', [ListingController::class, 'manage'])->name('logi
 
 //Single listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+
 
 //Show register create form
 Route::get('/register', [UserController::class, 'create']);

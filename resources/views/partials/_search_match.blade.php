@@ -1,4 +1,4 @@
-<form action="/">
+<form action="/games/index">
     <div class="relative border-2 border-gray-100 m-4 rounded-lg">
         <div class="absolute top-4 left-3">
             <i
@@ -9,14 +9,14 @@
             type="text"
             name="search"
             class="h-14 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
-            placeholder="Search teams..."
+            placeholder="Search matches..."
         />
         <div class="absolute top-2 right-2">
             <button
                 type="submit"
                 class="h-10 w-30 text-white rounded-lg bg-sky-500 hover:bg-sky-600"
             >
-                Search teams
+                Search matches
             </button>
         </div>
     </div>
