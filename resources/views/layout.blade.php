@@ -52,7 +52,10 @@
                         ><i class="fa-solid fa-gear"></i>
                         Manage teams</a>
                 </li>
-            
+                <li>
+                    <a href="/games/" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-circle-exclamation"></i>
+                        View matches</a>
+                </li>
                 <li>
                     <a href="/games/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-futbol"></i>
                         Add match</a>

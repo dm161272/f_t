@@ -21,6 +21,15 @@ class GameController extends Controller
 
     }
 
+
+    public function index_view() {
+      
+      $listings = Listing::all();
+    return view('games.index', ['listings'=>$listings]);
+
+}
+
+
     //show single game
     public function show(Game $game) {
 
@@ -32,7 +41,9 @@ class GameController extends Controller
 
     //show create form
     public function create() {
-      return view('games.create');
+      $listings = Listing::all();
+  
+      return view('games.create', ['listings'=>$listings]);
       }
 
 
@@ -41,14 +52,18 @@ class GameController extends Controller
   //dd($request->all());
   $formFields=$request->validate([
     'name' => ['required', Rule::unique('games', 'name')],
+    'date' => 'required',
     'location' => 'required',
+    'listings_id1' => 'required',
+    'listings_id2' => 'required'
+  
   ]);
 
   
 
   //dd($formFields);
   Game::create($formFields);
-  return redirect('/games/index/')->with('message', '| Game created successfully |');
+  return redirect('/games')->with('message', '| Game created successfully |');
 }
 
 
@@ -83,12 +98,12 @@ class GameController extends Controller
       
    
     $game->delete();
-    return redirect('/games/index/')->with('message', '| Game deleted successfully |');
+    return redirect('/games')->with('message', '| Game deleted successfully |');
     }
 
 //Manage game
 public function manage() {
-  return view('games.manage',  ['games' => game()->listings()->get()]);
+  return view('games.manage',  ['games' => auth()->user()->game()->get()]);
 
 
 }

@@ -21,6 +21,7 @@ public function scopeFilter($query, array $filters)
 
      }
    }
+   
    //Listing relationship to
    public function listings() {
        return $this->belongsTo(Listing::class, 'listings_id1', 'listings_id2');

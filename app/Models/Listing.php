@@ -27,7 +27,7 @@ public function scopeFilter($query, array $filters)
    }
 
     //Games relationship to
-      public function game() {
+      public function games() {
         return $this->hasMany(Game::class, 'listings_id1', 'listings_id2' );
     }
 
