@@ -2,48 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Listing;
 use App\Models\Game;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class GameController extends Controller
 {
     //show all games
-    public function index() {
-           // dd(request('tag'));
-        return view('games.index', [
-           
-        'games' => Game::latest()->filter(request(['search']))->paginate(6)
-    
+    public function index(Game $game) {
+      $teams_names = $game->select_teams_names();
+      return view('games.index', [   
+      'games' => Game::latest()->filter(request(['search']))->paginate(6),
+      'teams_names' => $teams_names
         ]);
 
     }
 
-
-    public function index_view() {
-      
-      $listings = Listing::all();
-    return view('games.index', ['listings'=>$listings]);
-
-}
-
-
     //show single game
     public function show(Game $game) {
-
-        return view('games.show', [
-            'game' => $game
+       $teams_names = $game->select_teams_names();
+       return view('games.show', [
+            'game' => $game, 
+            'team1' => $teams_names[$game->id-1]['team1'],
+            'team2' => $teams_names[$game->id-1]['team2'],
          ]);
         
     }
 
     //show create form
     public function create() {
-      $listings = Listing::all();
-  
-      return view('games.create', ['listings'=>$listings]);
+      $teams = Team::all();
+      return view('games.create', ['teams'=>$teams]);
       }
 
 
@@ -54,12 +46,12 @@ class GameController extends Controller
     'name' => ['required', Rule::unique('games', 'name')],
     'date' => 'required',
     'location' => 'required',
-    'listings_id1' => 'required',
-    'listings_id2' => 'required'
+    'teams_id1' => 'required',
+    'teams_id2' => 'required',
   
   ]);
 
-  
+  $formFields['user_id'] = auth()->id();
 
   //dd($formFields);
   Game::create($formFields);
@@ -70,8 +62,9 @@ class GameController extends Controller
       
    //show Edit form
     public function edit(Game $game) {
+      $teams = Team::all();
       //dd($game);
-        return view('games.edit' , ['game' => $game]);
+        return view('games.edit' , ['teams' => $teams],  ['game' => $game]);
     }
 
 
@@ -79,31 +72,34 @@ class GameController extends Controller
     //update game(team)
     public function update(Request $request, Game $game) {
 
-      $formFields=$request->validate([
-        'name' => 'required',
-        'location' => 'required',
+         //check if user is an owner
+         if($game->user_id != auth()->id()) {
+          abort(403, '| You are not authorized for this action |');
+        }
+  
+    $formFields=$request->validate([
+    'name' => 'required',
+    'date' => 'required',
+    'location' => 'required',
+    'teams_id1' => 'required',
+    'teams_id2' => 'required',
        
       ]);
 
-      
     //dd($formFields);
       $game->update($formFields);
-      return redirect('/games/index/')->with('message', '| Game updated successfully |');
+      return redirect('/games')->with('message', '| Game updated successfully |');
    }
 
-
     //delete game
-
     public function destroy(Game $game) {
-      
-   
     $game->delete();
     return redirect('/games')->with('message', '| Game deleted successfully |');
     }
 
-//Manage game
-public function manage() {
-  return view('games.manage',  ['games' => auth()->user()->game()->get()]);
+  //Manage game
+  public function manage() {
+  return view('games.manage',  ['games' => auth()->user()->games()->get()]);
 
 
 }

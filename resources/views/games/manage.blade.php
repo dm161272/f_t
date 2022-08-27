@@ -4,14 +4,14 @@
 
 <x-card class="p-10">
     <div class="flex flex-row justify-center items-center">
-        <div  class="text-2xl font-bold uppercase mb-6">Manage matches</div>
+        <div  class="text-2xl font-bold uppercase mb-6">Manage Matches</div>
     
         <div class="w-5 mb-6"><img src="{{ asset('images/soccerballnoshadow.svg') }}" alt="logo ball" class="logo"></div>
     </div>
 
     <table class="w-full table-auto rounded-sm">
         <tbody>
-            {{var_dump($games)}}
+            <!--{{var_dump($games)}} -->
             @unless ($games->isEmpty())
             @foreach ($games as $game)
                
@@ -50,7 +50,7 @@
             @else
             <tr class="border gray 300">
                 <td class="px-4 py08 border-t border-b">
-                    <p>No matches assigned to this user!</p>
+                    <p>No games assigned to this user!</p>
                 </td>
             </tr>
            @endunless

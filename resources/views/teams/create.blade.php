@@ -15,7 +15,7 @@ mt-24"
 
 
 
-<form action="/listings" method="POST" enctype="multipart/form-data">
+<form action="/teams" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-6">
         <label
@@ -28,7 +28,7 @@ mt-24"
             class="border border-gray-200 rounded p-2 w-full"
             name="name"
             value="{{ old('name') }}"
-            placeholder="Example: PHP Jedis"
+            placeholder="Enter team name here"
         />
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -44,7 +44,7 @@ mt-24"
             class="border border-gray-200 rounded p-2 w-full"
             name="city"
             value="{{ old('city') }}"
-            placeholder="Example: Mos Espa"
+            placeholder="Enter city name here"
         />
         @error('city')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -63,7 +63,7 @@ mt-24"
             class="border border-gray-200 rounded p-2 w-full"
             name="country"
             value="{{ old('country') }}"
-            placeholder="Example: Tatooine"
+            placeholder="Enter country name here"
         />
         @error('country')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>

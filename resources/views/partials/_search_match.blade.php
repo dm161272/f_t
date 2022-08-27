@@ -9,14 +9,14 @@
             type="text"
             name="search"
             class="h-14 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
-            placeholder="Search matches..."
+            placeholder="Search games..."
         />
         <div class="absolute top-2 right-2">
             <button
                 type="submit"
                 class="h-10 w-30 text-white rounded-lg bg-sky-500 hover:bg-sky-600"
             >
-                Search matches
+                Search games
             </button>
         </div>
     </div>

@@ -6,7 +6,7 @@ use App\Models\Game;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Listing extends Model
+class Team extends Model
 {
     use HasFactory;
 
@@ -28,7 +28,7 @@ public function scopeFilter($query, array $filters)
 
     //Games relationship to
       public function games() {
-        return $this->hasMany(Game::class, 'listings_id1', 'listings_id2' );
+        return $this->hasMany(Game::class, 'teams_id1', 'teams_id2' );
     }
 
 }

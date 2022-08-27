@@ -1,19 +1,19 @@
 <?php
 /*
 Verb	      URI	                     Action       	Route Name
-GET	      show all listings	            - index	
-GET	    show form to create new listing	- create	
-POST	store new listing	            - store	
-GET	    show single listing             - show	
-GET	    show form to edit listing	    - edit	
-PUT/PATCH	update listing              - update	
-DELETE	    delete listing              - destroy      comments.destroy
+GET	      show all teams	            - index	
+GET	    show form to create new team	- create	
+POST	store new team	            - store	
+GET	    show single team             - show	
+GET	    show form to edit team	    - edit	
+PUT/PATCH	update team              - update	
+DELETE	    delete team              - destroy      comments.destroy
 */
 
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ListingController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\GameController;
 
 //* **************** */
@@ -35,7 +35,7 @@ Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth
 //Delete game
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth');
 
-//Manage games
+//Manage Matches
 Route::get('/games/manage', [GameController::class, 'manage'])->name('login');
 
 //Single game
@@ -45,29 +45,29 @@ Route::get('/games/{game}', [GameController::class, 'show']);
 /* **************** */
 
 
-//All listings
-Route::get('/', [ListingController::class, 'index']);
+//All teams
+Route::get('/', [TeamController::class, 'index']);
 
 //Show create form
-Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
+Route::get('/teams/create', [TeamController::class, 'create'])->middleware('auth');
 
-//Store listing data
-Route::post('/listings', [ListingController::class, 'store']);
+//Store team data
+Route::post('/teams', [TeamController::class, 'store']);
 
 //Show edit form
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
+Route::get('/teams/{team}/edit', [TeamController::class, 'edit'])->middleware('auth');
 
-//Update listing 
-Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
+//Update team 
+Route::put('/teams/{team}', [TeamController::class, 'update'])->middleware('auth');
 
-//Delete listing 
-Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
+//Delete team 
+Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->middleware('auth');
 
-//Manage listings
-Route::get('/listings/manage', [ListingController::class, 'manage'])->name('login');
+//Manage teams
+Route::get('/teams/manage', [TeamController::class, 'manage'])->name('login');
 
-//Single listing
-Route::get('/listings/{listing}', [ListingController::class, 'show']);
+//Single team
+Route::get('/teams/{team}', [TeamController::class, 'show']);
 
 
 

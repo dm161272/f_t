@@ -44,28 +44,29 @@
                 </li>
                 @auth
                 <li>
-                    <a href="/listings/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-people-group"></i>
+                    <a href="/teams/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-people-group"></i>
                         Add team</a>
                 </li>
                 <li>
-                    <a href="/listings/manage" class="hover:text-laravel"
+                    <a href="/teams/manage" class="hover:text-laravel"
                         ><i class="fa-solid fa-gear"></i>
                         Manage teams</a>
                 </li>
                 <li>
                     <a href="/games/" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-circle-exclamation"></i>
-                        View matches</a>
+                        View Matches</a>
                 </li>
                 <li>
                     <a href="/games/create" class="hover:text-laravel text-black py-2"><i class="fa-solid fa-futbol"></i>
-                        Add match</a>
+                        Add Match</a>
                 </li>
                 <li>
                     <a href="/games/manage" class="hover:text-laravel"
                         ><i class="fa-solid fa-ranking-star"></i>
-                        Manage matches</a>
+                        Manage Matches</a>
                 </li>
                 @endauth
+                
                 <li>
                     <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i>Register</a>
@@ -75,6 +76,7 @@
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
                 </li>
+                
                 @auth
                 <li>
                     <form class="inline" method="POST" action="/logout">

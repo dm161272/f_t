@@ -3,44 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Listing;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
-class ListingController extends Controller
+class TeamController extends Controller
 {
-    //show all listings
+    //show all teams
     public function index() {
            // dd(request('tag'));
-        return view('listings.index', [
+        return view('teams.index', [
            
-        'listings' => Listing::latest()->filter(request(['search']))->paginate(6)
+        'teams' => Team::latest()->filter(request(['search']))->paginate(6)
     
         ]);
 
     }
 
-    //show single listing
-    public function show(Listing $listing) {
+    //show single team
+    public function show(Team $team) {
 
-        return view('listings.show', [
-            'listing' => $listing
+        return view('teams.show', [
+            'team' => $team
          ]);
         
     }
 
     //show create form
     public function create() {
-      return view('listings.create');
+      return view('teams.create');
       }
 
 
-    //store listing(team)
+    //store team(team)
   public function store(Request $request) {
   //dd($request->all());
   $formFields=$request->validate([
-    'name' => ['required', Rule::unique('listings', 'name')],
+    'name' => ['required', Rule::unique('teams', 'name')],
     'city' => 'required',
     'country' => 'required',
   ]);
@@ -52,25 +52,25 @@ class ListingController extends Controller
     $formFields['user_id'] = auth()->id();
 
   //dd($formFields);
-  Listing::create($formFields);
+  team::create($formFields);
   return redirect('/')->with('message', '| Team created successfully |');
 }
 
 
       
    //show Edit form
-    public function edit(Listing $listing) {
-      //dd($listing);
-        return view('listings.edit' , ['listing' => $listing]);
+    public function edit(Team $team) {
+      //dd($team);
+        return view('teams.edit' , ['team' => $team]);
     }
 
 
 
-    //update listing(team)
-    public function update(Request $request, Listing $listing) {
+    //update team(team)
+    public function update(Request $request, Team $team) {
       
       //check if user is an owner
-      if($listing->user_id != auth()->id()) {
+      if($team->user_id != auth()->id()) {
         abort(403, '| You are not authorized for this action |');
       }
 
@@ -86,26 +86,26 @@ class ListingController extends Controller
         }
 
     //dd($formFields);
-      $listing->update($formFields);
+      $team->update($formFields);
       return redirect('/')->with('message', '| Team updated successfully |');
    }
 
 
-    //delete listing
+    //delete team
 
-    public function destroy(Listing $listing) {
+    public function destroy(team $team) {
       
      //check if user is an owner
-     if($listing->user_id != auth()->id()) {
+     if($team->user_id != auth()->id()) {
       abort(403, '| You are not authorized for this action |');
     }
-    $listing->delete();
+    $team->delete();
     return redirect('/')->with('message', '| Team deleted successfully |');
     }
 
-//Manage listing
+//Manage team
 public function manage() {
-  return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+  return view('teams.manage', ['teams' => auth()->user()->teams()->get()]);
 
 
 }

@@ -14,26 +14,25 @@ mt-24"
     
 </div>
 <div class="text-2xl text-center font-bold uppercase mb-6">
-    <p>{{$listing->name}}</p>
+    <p>{{$team->name}}</p>
 </div>
 
 
 </header>
 
-<form method="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data">
+<form method="POST" action="/teams/{{$team->id}}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-6">
         <label
             for="name"
             class="inline-block text-lg mb-2"
-            >Team name</label
-        >
+            >Team name</label>
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="name"
-            value="{{ $listing->name }}"
+            value="{{ $team->name }}"
             placeholder="Example: PHP Jedis"
         />
         @error('name')
@@ -49,7 +48,7 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="city"
-            value="{{ $listing->city }}"
+            value="{{ $team->city }}"
             placeholder="Example: Mos Espa"
         />
         @error('city')
@@ -68,7 +67,7 @@ mt-24"
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="country"
-            value="{{ $listing->country }}"
+            value="{{ $team->country }}"
             placeholder="Example: Tatooine"
         />
         @error('country')
@@ -93,7 +92,7 @@ mt-24"
         <img
       class="hidden w-24 mx-auto md:block"
      
-      src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/noimage.png')}}" alt=""/>
+      src="{{$team->logo ? asset('storage/' . $team->logo) : asset('/images/noimage.png')}}" alt=""/>
       </div>
       
     <div class="mb-6">

@@ -19,21 +19,21 @@ mt-24"
 
 </header>
 
-<form method="POST" action="/games/{{$game->id}}" enctype="multipart/form-data">
+
+<form action="/games/{{$game->id}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="mb-6">
         <label
             for="name"
             class="inline-block text-lg mb-2"
-            >Team name</label
-        >
+            >Match name</label>
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="name"
             value="{{ $game->name }}"
-            placeholder="Example: PHP Jedis"
+            placeholder="Example: First game"
         />
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -41,59 +41,65 @@ mt-24"
     </div>
 
     <div class="mb-6">
-        <label for="city" class="inline-block text-lg mb-2"
-            >City</label
+        <label for="location" class="inline-block text-lg mb-2"
+            >Location</label
         >
+
+       
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
-            name="city"
-            value="{{ $game->city }}"
-            placeholder="Example: Mos Espa"
+            name="location"
+            value="{{ $game->location }}"
+            placeholder="Example: Barcelona stadium"
         />
-        @error('city')
+        @error('location')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
+    
+    </div>
+
+    <div class="mb-6">   
+    Select first team
+         <select name="teams_id1" class="inline-block text-lg mb-2">
+         
+            @foreach ($teams as $team)
+            <option value="{{$team->id}}">{{$team->name}}</option>
+            @endforeach
+        </select>
+        
+    
+    </div>
+    Select second team
+    <div class="mb-6">
+        <select name="teams_id2" class="inline-block text-lg mb-2">
+            
+            @foreach ($teams as $team)
+            <option value="{{$team->id}}">{{$team->name}}</option>
+            @endforeach
+        </select>
     
     </div>
 
     <div class="mb-6">
         <label
-            for="country"
+            for="date"
             class="inline-block text-lg mb-2"
-            >Country</label
+            >Set date</label
         >
         <input
-            type="text"
+            type="date"
             class="border border-gray-200 rounded p-2 w-full"
-            name="country"
-            value="{{ $game->country }}"
-            placeholder="Example: Tatooine"
+            name="date"
+            value="{{ $game->date }}"
+            
         />
-        @error('country')
+       
+        @error('date')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     
     </div>
-
-    <div class="mb-6">
-        <label for="logo" 
-               class="inline-block text-lg mb-2">
-          Team Logo
-        </label>
-        <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
-
-        @error('logo')
-        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-        @enderror
-      </div>
-   
-      <div>
-        <img
-      class="hidden w-24 mx-auto md:block"
-     
-      src="{{$game->logo ? asset('storage/' . $game->logo) : asset('/images/noimage.png')}}" alt=""/>
-      </div>
       
     <div class="mb-6">
         <button

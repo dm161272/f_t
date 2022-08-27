@@ -44,9 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-      //Listings relationship to
-   public function listings() {
-    return $this->hasMany(Listing::class, 'user_id');
+      //teams relationship to
+   public function teams() {
+    return $this->hasMany(Team::class, 'user_id');
 }
+
+      //games relationship to
+      public function games() {
+        return $this->hasMany(Game::class, 'user_id');
+    }
 
 }

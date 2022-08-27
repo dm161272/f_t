@@ -9,19 +9,19 @@
             <img
                 class="hidden w-24 mr-6 md:block"
                
-                src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/noimage.png')}}" alt=""/>
+                src="{{$team->logo ? asset('storage/' . $team->logo) : asset('/images/noimage.png')}}" alt=""/>
     
-            <h3 class="text-2xl mb-2">{{ $listing->name }}</h3>
+            <h3 class="text-2xl mb-2">{{ $team->name }}</h3>
             <ul class="flex">
                 <li
                     class="bg-sky-500 text-white rounded-xl px-3 py-1 mr-2"
                 >
-                    <h2>{{'City: ' . $listing->city }}</h2>
+                    <h2>{{'City: ' . $team->city }}</h2>
                 </li>
                 <li
                     class="bg-sky-500 text-white rounded-xl px-3 py-1 mr-2"
                 >
-                    <h2>{{'Country: ' . $listing->country }}</h2>
+                    <h2>{{'Country: ' . $team->country }}</h2>
                 </li>
             </ul>
                 </div>
