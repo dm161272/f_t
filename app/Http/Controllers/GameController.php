@@ -13,21 +13,23 @@ class GameController extends Controller
 {
     //show all games
     public function index(Game $game) {
-      $teams_names = $game->select_teams_names();
+      $games = $game->select_teams_names();
+      //dd($games);
       return view('games.index', [   
-      'games' => Game::latest()->filter(request(['search']))->paginate(6),
-      'teams_names' => $teams_names
+      'games' => $games,
+    
         ]);
 
     }
 
     //show single game
     public function show(Game $game) {
-       $teams_names = $game->select_teams_names();
+       $teams_names = $game->select_teams_names($game->id);
+       //dd($teams_names);
        return view('games.show', [
             'game' => $game, 
-            'team1' => $teams_names[$game->id-1]['team1'],
-            'team2' => $teams_names[$game->id-1]['team2'],
+            'team1' => $teams_names[0]['team1'],
+            'team2' => $teams_names[0]['team2'],
          ]);
         
     }
