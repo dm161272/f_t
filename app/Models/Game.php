@@ -23,17 +23,26 @@ public function scopeFilter($query, array $filters)
    }
    
     //teams names selector for matches display based on IDs
-   public function select_teams_names() {
-    $teams_names = Game::select('t1.name AS team1', 't2.name AS team2')
+   public function select_teams_names(Game $game) {
+    $this->game = $game;
+     return $this->game::select('t1.name AS team1', 't2.name AS team2')
+    ->where('games.id', '=', $game->id )
     ->join('teams AS t1', 'games.teams_id1', 't1.id')
     ->join('teams AS t2', 'games.teams_id2', 't2.id')
-    ->get(['t1.name', 't2.name'])
+    ->get()
     ->toArray();
-
-    return $teams_names;
-
     }
 
+      //all teams names selector for matches display
+    public function select_all_teams_names() {
+         return Game::select('games.id', 'games.name', 'games.location', 't1.name AS team1', 't2.name AS team2', 'games.date')
+        ->join('teams AS t1', 'games.teams_id1', 't1.id')
+        ->join('teams AS t2', 'games.teams_id2', 't2.id')
+        ->get()
+        ->toArray();
+        }
+
+    
     //User relationship to
     public function user() {
         return $this->belongsTo(User::class, 'user_id');

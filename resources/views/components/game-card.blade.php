@@ -17,7 +17,7 @@
                     </li>
                     <li
                         class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                        <h2>{{'Team 1: ' }}</h2>
+                        <h2>{{'Team 1: ' . $game->teams_id1}}</h2>
                     </li>
                     <li
                         class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2 text-xs">
