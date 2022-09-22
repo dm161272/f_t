@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._logo')
 
 <x-card class="p-10">
     <div class="flex flex-row justify-center items-center">
@@ -50,7 +51,7 @@
             @else
             <tr class="border gray 300">
                 <td class="px-4 py08 border-t border-b">
-                    <p>No games assigned to this user!</p>
+                    <p>No matches assigned to this user!</p>
                 </td>
             </tr>
            @endunless

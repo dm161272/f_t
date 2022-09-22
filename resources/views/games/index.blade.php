@@ -21,20 +21,20 @@
      
         <ul class="flex">
         <li
-                class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2 text-xs"
+                class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2"
             >
                 <h3>{{'Location: ' . $game['location']}}</h3>
             </li>
             <li
-                class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                <h2>{{'Team 1: ' . $game['team1']}}</h2>
+                class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2">
+                <h2>{{'Team 1: ' . $game['team1'] . ' | Score: ' . $game['score_team1']}}</h2>
             </li>
             <li
-                class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2 text-xs">
-                <h2>{{'Team 2: ' . $game['team2']}}</h2>
+                class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2">
+                <h2>{{'Team 2: ' .  $game['team2'] . ' | Score: ' .  $game['score_team2']}}</h2>
             </li>
             <li
-            class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2 text-xs">
+            class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2">
             <h2>{{'Match date: ' . $game['date']}}</h2>
         </li>
            

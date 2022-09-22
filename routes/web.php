@@ -52,7 +52,7 @@ Route::get('/', [TeamController::class, 'index']);
 Route::get('/teams/create', [TeamController::class, 'create'])->middleware('auth');
 
 //Store team data
-Route::post('/teams', [TeamController::class, 'store']);
+Route::post('/teams', [TeamController::class, 'store'])->middleware('auth');;
 
 //Show edit form
 Route::get('/teams/{team}/edit', [TeamController::class, 'edit'])->middleware('auth');
@@ -64,7 +64,7 @@ Route::put('/teams/{team}', [TeamController::class, 'update'])->middleware('auth
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->middleware('auth');
 
 //Manage teams
-Route::get('/teams/manage', [TeamController::class, 'manage'])->name('login');
+Route::get('/teams/manage', [TeamController::class, 'manage']);
 
 //Single team
 Route::get('/teams/{team}', [TeamController::class, 'show']);
@@ -81,7 +81,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Login form 
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('/login', [UserController::class, 'login']);
        
 //Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);

@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._logo')
 
 <x-card
 class="p-10 rounded max-w-lg mx-auto 
@@ -19,9 +20,8 @@ mt-24"
     <div class="mb-6">
         <label
             for="name"
-            class="inline-block text-lg mb-2"
-            >Game name</label
-        >
+            class="inline-block text-lg mb-2">Game name</label>
+
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
@@ -60,9 +60,17 @@ mt-24"
          <option value="{{$team->id}}">{{$team->name}}</option>
          @endforeach
         </select>
-        
     
     </div>
+
+    <div class="mb-6">
+        Select first team score
+            <select name="score_team1" class="inline-block text-lg mb-2">
+             @for ($i = 0; $i <=13; $i++)
+             <option value="{{$i}}">{{$i}}</option>
+             @endfor
+            </select>
+        </div>
 
     
     <div class="mb-6">
@@ -76,6 +84,15 @@ mt-24"
     </div>
 
     <div class="mb-6">
+        Select second team score
+            <select name="score_team2" class="inline-block text-lg mb-2">
+             @for ($i = 0; $i <=13; $i++)
+             <option value="{{$i}}">{{$i}}</option>
+             @endfor
+            </select>
+        </div>
+
+    <div class="mb-6">
         <label
             for="date"
             class="inline-block text-lg mb-2"
@@ -85,7 +102,6 @@ mt-24"
             type="date"
             class="border border-gray-200 rounded p-2 w-full"
             name="date"
-            
         />
        
         @error('date')
@@ -109,3 +125,5 @@ mt-24"
 
 
 @endsection
+
+

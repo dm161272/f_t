@@ -100,7 +100,7 @@ class TeamController extends Controller
       abort(403, '| You are not authorized for this action |');
     }
     $team->delete();
-    return redirect('/')->with('message', '| Team deleted successfully |');
+    return redirect('/teams/manage')->with('message', '| Team deleted successfully |');
     }
 
 //Manage team

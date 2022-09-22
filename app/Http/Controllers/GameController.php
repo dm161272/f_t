@@ -30,6 +30,9 @@ class GameController extends Controller
             'game' => $game, 
             'team1' => $teams_names[0]['team1'],
             'team2' => $teams_names[0]['team2'],
+            'score_team1' => $teams_names[0]['score_team1'],
+            'score_team2' => $teams_names[0]['score_team2'],
+
          ]);
         
     }
@@ -40,7 +43,6 @@ class GameController extends Controller
       return view('games.create', ['teams'=>$teams]);
       }
 
-
     //store game(team)
   public function store(Request $request) {
   //dd($request->all());
@@ -50,14 +52,21 @@ class GameController extends Controller
     'location' => 'required',
     'teams_id1' => 'required',
     'teams_id2' => 'required',
+    'score_team1' => 'required',
+    'score_team2' => 'required',
   
   ]);
 
   $formFields['user_id'] = auth()->id();
-
-  //dd($formFields);
+  if ($formFields['teams_id1'] != $formFields['teams_id2']) {
   Game::create($formFields);
-  return redirect('/games')->with('message', '| Game created successfully |');
+  return redirect('/games')->with('message', '| Match created successfully |');
+  }
+  else {
+
+  return redirect('/games/create')->with('message', '| Match teams must be different |');
+
+  }
 }
 
 
@@ -85,18 +94,20 @@ class GameController extends Controller
     'location' => 'required',
     'teams_id1' => 'required',
     'teams_id2' => 'required',
+    'score_team1' => 'required',
+    'score_team2' => 'required',
        
       ]);
 
     //dd($formFields);
       $game->update($formFields);
-      return redirect('/games')->with('message', '| Game updated successfully |');
+      return redirect('/games')->with('message', '| Match updated successfully |');
    }
 
     //delete game
     public function destroy(Game $game) {
     $game->delete();
-    return redirect('/games')->with('message', '| Game deleted successfully |');
+    return redirect('/games/manage')->with('message', '| Match deleted successfully |');
     }
 
   //Manage game

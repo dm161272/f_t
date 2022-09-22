@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._logo')
 
 <x-card
 class="p-10 rounded max-w-lg mx-auto 

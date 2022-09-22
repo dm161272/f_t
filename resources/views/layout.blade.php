@@ -28,14 +28,14 @@
         </script>
         <title>SOCCER TEAM MANAGEMENT</title>
     </head>
-    <body class="mb-48">
+    <body class="mb-48 w-3/4 mx-auto">
         <div class="bg-sky-500 text-white text-center font-bold uppercase mb-2 py-2">
             @auth
              
                     Welcome{{", " . auth()->user()->f_name . "  " .auth()->user()->l_name . "!"}}  
             @endauth
         </div>
-        <nav class="flex justify-end items-center mb-4">
+        <nav class="flex justify-center items-center mb-4">
            
             <ul class="flex space-x-6 mr-6 text-lg">
                 <li>
@@ -96,7 +96,7 @@
     	</main>
 
  <footer
-            class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center"
+            class="fixed bottom-0 mx-auto w-3/4 flex items-center justify-center font-bold bg-laravel text-white h-12 mt-24 opacity-90 md:justify-center"
         >
             <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
 

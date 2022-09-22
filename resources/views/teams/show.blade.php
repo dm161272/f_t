@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._logo')
 
 <div class="mx-4">
     <x-slot class="p-10">
