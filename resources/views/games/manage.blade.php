@@ -5,9 +5,8 @@
 
 <x-card class="p-10">
     <div class="flex flex-row justify-center items-center">
-        <div  class="text-2xl font-bold uppercase mb-6">Manage Matches</div>
-    
-        <div class="w-5 mb-6"><img src="{{ asset('images/soccerballnoshadow.svg') }}" alt="logo ball" class="logo"></div>
+        <div  class="text-2xl font-bold uppercase mb-6">Manage matches</div>
+
     </div>
 
     <table class="w-full table-auto rounded-sm">
