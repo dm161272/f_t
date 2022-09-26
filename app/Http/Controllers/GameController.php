@@ -78,15 +78,13 @@ class GameController extends Controller
         return view('games.edit' , ['teams' => $teams],  ['game' => $game]);
     }
 
-
-
     //update game(team)
     public function update(Request $request, Game $game) {
 
-         //check if user is an owner
-         if($game->user_id != auth()->id()) {
-          abort(403, '| You are not authorized for this action |');
-        }
+    //check if user is an owner
+    if($game->user_id != auth()->id()) {
+    abort(403, '| You are not authorized for this action |');
+    }
   
     $formFields=$request->validate([
     'name' => 'required',
@@ -95,17 +93,21 @@ class GameController extends Controller
     'teams_id1' => 'required',
     'teams_id2' => 'required',
     'score_team1' => 'required',
-    'score_team2' => 'required',
-       
+    'score_team2' => 'required',  
       ]);
 
-    //dd($formFields);
-      $game->update($formFields);
-      return redirect('/games')->with('message', '| Match updated successfully |');
+    if ($formFields['teams_id1'] != $formFields['teams_id2']) {
+    $game->update($formFields);
+    return redirect('/games')->with('message', '| Match updated successfully |');
    }
+   else 
+   {
+    return redirect('/games/' . $game->id. '/edit')->with('message', '| Match teams must be different |');
+   }
+  }
 
-    //delete game
-    public function destroy(Game $game) {
+  //delete game
+  public function destroy(Game $game) {
     $game->delete();
     return redirect('/games/manage')->with('message', '| Match deleted successfully |');
     }
@@ -114,10 +116,6 @@ class GameController extends Controller
   public function manage() {
   return view('games.manage',  ['games' => auth()->user()->games()->get()]);
 
-
 }
-
-
-
 
 }

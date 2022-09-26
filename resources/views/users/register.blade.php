@@ -15,29 +15,29 @@ class="p-10 rounded max-w-lg mx-auto mt-24">
 <form  method='POST' action="/users">
     @csrf
     <div  class="mb-6">
-        <label for="f_name" class="inline-block text-lg mb-2">
+        <label for="first_name" class="inline-block text-lg mb-2">
             First name
         </label>
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
-            name="f_name" value='{{old('f_name')}}'
+            name="first_name" value='{{old('first_name')}}'
         />
-        @error('f_name')
+        @error('first_name')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     </div>
 
     <div class="mb-6">
-        <label for="l_name" class="inline-block text-lg mb-2">
+        <label for="last_name" class="inline-block text-lg mb-2">
             Last name
         </label>
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
-            name="l_name" value='{{old('l_name')}}'
+            name="last_name" value='{{old('last_name')}}'
         />
-        @error('l_name')
+        @error('last_name')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     </div>

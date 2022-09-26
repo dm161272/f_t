@@ -8,17 +8,9 @@ class="p-10 rounded max-w-lg mx-auto
 mt-24"
 >
 <div class="flex flex-row justify-center items-center">
-    <div  class="text-2xl font-bold uppercase mb-6">Edit match</div>
-
-    <div class="w-5 mb-6"><img src="{{ asset('images/soccerballnoshadow.svg') }}" alt="logo ball" class="logo"></div>
-    
-</div>
-<div class="text-2xl text-center font-bold uppercase mb-6">
-    <p>{{$game->name}}</p>
+    <div  class="text-2xl font-bold uppercase mb-6">Edit game</div>
 </div>
 
-
-</header>
 
 
 <form action="/games/{{$game->id}}" method="POST" enctype="multipart/form-data">
@@ -27,8 +19,8 @@ mt-24"
     <div class="mb-6">
         <label
             for="name"
-            class="inline-block text-lg mb-2"
-            >Match name</label>
+            class="inline-block text-lg mb-2">Game name</label>
+
         <input
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
@@ -60,27 +52,44 @@ mt-24"
     
     </div>
 
-    <div class="mb-6">   
-    Select first team
-         <select name="teams_id1" class="inline-block text-lg mb-2">
-         
-            @foreach ($teams as $team)
-            <option value="{{$team->id}}">{{$team->name}}</option>
-            @endforeach
-        </select>
-        
-    
-    </div>
-    Select second team
     <div class="mb-6">
-        <select name="teams_id2" class="inline-block text-lg mb-2">
-            
-            @foreach ($teams as $team)
-            <option value="{{$team->id}}">{{$team->name}}</option>
-            @endforeach
+    Select first team
+        <select name="teams_id1" class="inline-block text-lg mb-2">
+         @foreach ($teams as $team)
+         <option value="{{$team->id}}">{{$team->name}}</option>
+         @endforeach
         </select>
     
     </div>
+
+    <div class="mb-6">
+        Select first team score
+            <select name="score_team1" class="inline-block text-lg mb-2">
+             @for ($i = 0; $i <=13; $i++)
+             <option value="{{$i}}">{{$i}}</option>
+             @endfor
+            </select>
+        </div>
+
+    
+    <div class="mb-6">
+        Select second team
+        <select name="teams_id2" class="inline-block text-lg mb-2">
+         @foreach ($teams as $team)
+         <option value="{{$team->id}}">{{$team->name}}</option>
+         @endforeach
+        </select>
+    
+    </div>
+
+    <div class="mb-6">
+        Select second team score
+            <select name="score_team2" class="inline-block text-lg mb-2">
+             @for ($i = 0; $i <=13; $i++)
+             <option value="{{$i}}">{{$i}}</option>
+             @endfor
+            </select>
+        </div>
 
     <div class="mb-6">
         <label
@@ -92,8 +101,6 @@ mt-24"
             type="date"
             class="border border-gray-200 rounded p-2 w-full"
             name="date"
-            value="{{ $game->date }}"
-            
         />
        
         @error('date')
@@ -101,13 +108,15 @@ mt-24"
         @enderror
     
     </div>
-      
+
+
     <div class="mb-6">
         <button
             class="bg-laravel text-white rounded py-2 px-4 hover:hover:bg-sky-600"
         >
-            Save
+            Save game
         </button>
+
         <a href="/" class="text-black ml-4"> Back </a>
     </div>
 </form>
@@ -115,3 +124,5 @@ mt-24"
 
 
 @endsection
+
+

@@ -32,7 +32,7 @@
         <div class="bg-sky-500 text-white text-center font-bold uppercase mb-2 py-2">
             @auth
              
-                    Welcome{{", " . auth()->user()->f_name . "  " .auth()->user()->l_name . "!"}}  
+                    Welcome{{", " . auth()->user()->first_name . "  " .auth()->user()->last_name . "!"}}  
             @endauth
         </div>
         <nav class="flex justify-center items-center mb-4">
