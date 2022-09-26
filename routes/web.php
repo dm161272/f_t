@@ -39,7 +39,7 @@ Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('
 Route::get('/games/manage', [GameController::class, 'manage'])->name('login')->middleware('auth');
 
 //Single game
-Route::get('/games/{game}', [GameController::class, 'show'])->middleware('auth');
+Route::get('/games/{game}', [GameController::class, 'show']);
 
 
 /* **************** */
@@ -72,7 +72,7 @@ Route::get('/teams/{team}', [TeamController::class, 'show'])->middleware('auth')
 
 
 //Show register create form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 //Create new user
 Route::post('/users', [UserController::class, 'store']);
@@ -81,7 +81,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Login form 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
        
 //Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);

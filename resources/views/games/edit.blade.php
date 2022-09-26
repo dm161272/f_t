@@ -8,7 +8,7 @@ class="p-10 rounded max-w-lg mx-auto
 mt-24"
 >
 <div class="flex flex-row justify-center items-center">
-    <div  class="text-2xl font-bold uppercase mb-6">Edit game</div>
+    <div  class="text-2xl font-bold uppercase mb-6">Edit match</div>
 </div>
 
 

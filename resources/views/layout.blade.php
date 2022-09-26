@@ -66,7 +66,8 @@
                         Manage Matches</a>
                 </li>
                 @endauth
-                
+
+                @guest
                 <li>
                     <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i>Register</a>
@@ -76,7 +77,8 @@
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
                 </li>
-                
+                @endguest
+
                 @auth
                 <li>
                     <form class="inline" method="POST" action="/logout">
@@ -102,8 +104,6 @@
 
     
  </footer>
-
-
 
 </body>
 </html>
