@@ -24,7 +24,7 @@ Route::get('/games', [GameController::class, 'index']);
 Route::get('/games/create', [GameController::class, 'create'])->middleware('auth');
 
 //Store game data
-Route::post('/games', [GameController::class, 'store']);
+Route::post('/games', [GameController::class, 'store'])->middleware('auth');
 
 //Show edit form
 Route::get('/games/{game}/edit', [GameController::class, 'edit'])->middleware('auth');
@@ -36,7 +36,7 @@ Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth');
 
 //Manage Matches
-Route::get('/games/manage', [GameController::class, 'manage'])->name('login');
+Route::get('/games/manage', [GameController::class, 'manage'])->middleware('auth');
 
 //Single game
 Route::get('/games/{game}', [GameController::class, 'show']);
@@ -52,7 +52,7 @@ Route::get('/', [TeamController::class, 'index']);
 Route::get('/teams/create', [TeamController::class, 'create'])->middleware('auth');
 
 //Store team data
-Route::post('/teams', [TeamController::class, 'store']);
+Route::post('/teams', [TeamController::class, 'store'])->middleware('auth');;
 
 //Show edit form
 Route::get('/teams/{team}/edit', [TeamController::class, 'edit'])->middleware('auth');
@@ -64,15 +64,15 @@ Route::put('/teams/{team}', [TeamController::class, 'update'])->middleware('auth
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->middleware('auth');
 
 //Manage teams
-Route::get('/teams/manage', [TeamController::class, 'manage'])->name('login');
+Route::get('/teams/manage', [TeamController::class, 'manage'])->middleware('auth');
 
 //Single team
-Route::get('/teams/{team}', [TeamController::class, 'show']);
+Route::get('/teams/{team}', [TeamController::class, 'show'])->middleware('auth');
 
 
 
 //Show register create form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 //Create new user
 Route::post('/users', [UserController::class, 'store']);
@@ -81,7 +81,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Login form 
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
        
 //Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);

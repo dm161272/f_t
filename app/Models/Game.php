@@ -10,7 +10,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'location', 'date', 'user_id', 'teams_id1', 'teams_id2'];
+protected $fillable = ['name', 'location', 'date', 'user_id', 'teams_id1', 'teams_id2', 'score_team1', 'score_team2'];
 
 public function scopeFilter($query, array $filters)
 {
@@ -23,12 +23,22 @@ public function scopeFilter($query, array $filters)
    }
    
     //teams names selector for matches display based on IDs
-   public function select_teams_names() {
-    $teams_names = Game::select('t1.name AS team1', 't2.name AS team2')
+   public function select_teams_names($id = NULL) {
+    if ($id != NULL) {
+    $teams_names = Game::select('games.name', 't1.name AS team1', 
+    't2.name AS team2', 'games.score_team1', 'games.score_team2')
+    ->where('games.id', '=', $id )
     ->join('teams AS t1', 'games.teams_id1', 't1.id')
     ->join('teams AS t2', 'games.teams_id2', 't2.id')
-    ->get(['t1.name', 't2.name'])
-    ->toArray();
+    ->get();}
+    else
+    {
+        $teams_names = Game::select('games.id','games.name', 't1.name AS team1', 
+        't2.name AS team2', 'games.location', 'games.date', 'games.score_team1', 'games.score_team2')
+        ->join('teams AS t1', 'games.teams_id1', 't1.id')
+        ->join('teams AS t2', 'games.teams_id2', 't2.id')
+        ->get();
+    }
 
     return $teams_names;
 

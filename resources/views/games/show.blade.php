@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+@include('partials._logo')
 
 <div class="mx-4">
     <x-card class="p-10">
@@ -15,11 +16,11 @@
             </li>
             <li
                 class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2">
-                <h2>{{'Team 1: ' . $team1}}</h2>
+                <h2>{{'Team 1: ' . $team1 . ' | Score: ' . $score_team1}}</h2>
             </li>
             <li
                 class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2">
-                <h2>{{'Team 2: ' . $team2}}</h2>
+                <h2>{{'Team 2: ' . $team2 . ' | Score: ' . $score_team2}}</h2>
             </li>
             <li
                 class="flex items-center justify-center bg-sky-500 text-white rounded-xl py-1 px-3 mr-2">
