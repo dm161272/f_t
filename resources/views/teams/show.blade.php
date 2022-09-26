@@ -4,7 +4,7 @@
 @include('partials._logo')
 
 <div class="mx-4">
-    
+<x-card class="p-10">
     <div class="flex flex-col items-center justify-center text-center">
         <img
             class="hidden w-24 mr-6 md:block"
@@ -30,7 +30,7 @@
       
         </div>
     </div>
-       
+    </x-card> 
 </div>
 
 <a href="..\" class="inline-block text-black mt-4 ml-4"
