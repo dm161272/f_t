@@ -24,7 +24,7 @@ Route::get('/games', [GameController::class, 'index']);
 Route::get('/games/create', [GameController::class, 'create'])->middleware('auth');
 
 //Store game data
-Route::post('/games', [GameController::class, 'store']);
+Route::post('/games', [GameController::class, 'store'])->middleware('auth');
 
 //Show edit form
 Route::get('/games/{game}/edit', [GameController::class, 'edit'])->middleware('auth');
@@ -36,10 +36,10 @@ Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth');
 
 //Manage Matches
-Route::get('/games/manage', [GameController::class, 'manage'])->name('login');
+Route::get('/games/manage', [GameController::class, 'manage'])->name('login')->middleware('auth');
 
 //Single game
-Route::get('/games/{game}', [GameController::class, 'show']);
+Route::get('/games/{game}', [GameController::class, 'show'])->middleware('auth');
 
 
 /* **************** */
@@ -64,10 +64,10 @@ Route::put('/teams/{team}', [TeamController::class, 'update'])->middleware('auth
 Route::delete('/teams/{team}', [TeamController::class, 'destroy'])->middleware('auth');
 
 //Manage teams
-Route::get('/teams/manage', [TeamController::class, 'manage']);
+Route::get('/teams/manage', [TeamController::class, 'manage'])->middleware('auth');
 
 //Single team
-Route::get('/teams/{team}', [TeamController::class, 'show']);
+Route::get('/teams/{team}', [TeamController::class, 'show'])->middleware('auth');
 
 
 

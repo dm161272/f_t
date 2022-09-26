@@ -26,12 +26,15 @@ class TeamFactory extends Factory
         static $count = 0;
         $id_counter = User::select('id')
         ->count();
+        $user_id = rand(1, $id_counter);
+        ($user_id%2)? $logo = 'logos/team_logo_1.jpeg' : $logo = 'logos/team_logo_2.png';
         $count++;
         return [
-            'user_id' => rand(1, $id_counter),
+            'user_id' => $user_id,
             'name' => $names[$count-1],
             'city' => fake()->city(),
             'country' => fake()->country(),
+            'logo' => $logo,          
         ];
         
     }

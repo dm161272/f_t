@@ -15,7 +15,7 @@ class TeamController extends Controller
            // dd(request('tag'));
         return view('teams.index', [
            
-        'teams' => Team::latest()->filter(request(['search']))->paginate(6)
+        'teams' => Team::latest()->filter(request(['search']))->paginate(10)
     
         ]);
 
@@ -44,7 +44,6 @@ class TeamController extends Controller
     'city' => 'required',
     'country' => 'required',
   ]);
-
    if($request->hasFile('logo')) {
       $formFields['logo'] = $request->file('logo')->store('logos', 'public');
     }
