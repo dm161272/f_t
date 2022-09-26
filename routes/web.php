@@ -36,7 +36,7 @@ Route::put('/games/{game}', [GameController::class, 'update'])->middleware('auth
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->middleware('auth');
 
 //Manage Matches
-Route::get('/games/manage', [GameController::class, 'manage'])->name('login')->middleware('auth');
+Route::get('/games/manage', [GameController::class, 'manage'])->middleware('auth');
 
 //Single game
 Route::get('/games/{game}', [GameController::class, 'show']);

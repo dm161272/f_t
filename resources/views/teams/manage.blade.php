@@ -46,9 +46,9 @@
             </tr>
             @endforeach
             @else
-            <tr class="border gray 300">
-                <td class="px-4 py08 border-t border-b">
-                    <p>No teams assigned to this user!</p>
+            <tr class="border-gray-300">
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                    <p class="text-center">No teams assigned to this user!</p>
                 </td>
             </tr>
            @endunless

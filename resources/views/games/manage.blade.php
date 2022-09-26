@@ -15,7 +15,7 @@
             @unless ($games->isEmpty())
             @foreach ($games as $game)
                
-            <tr class="border-gray-300">
+            <tr class="border-gray-300 text-lg">
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
@@ -48,9 +48,9 @@
             </tr>
             @endforeach
             @else
-            <tr class="border gray 300">
-                <td class="px-4 py08 border-t border-b">
-                    <p>No matches assigned to this user!</p>
+            <tr class="border-gray-300">
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                    <p class="text-center">No matches assigned to this user!</p>
                 </td>
             </tr>
            @endunless
