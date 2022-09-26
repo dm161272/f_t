@@ -1,13 +1,11 @@
 @extends('layout')
 
 @section('content')
+@include('partials._logo')
 
 <x-card class="p-10">
     <div class="flex flex-row justify-center items-center">
-        <div  class="text-2xl font-bold uppercase mb-6">Manage s</div>
-    
-        <div class="w-5 mb-6"><img src="{{ asset('images/soccerballnoshadow.svg') }}" alt="logo ball" class="logo"></div>
-        <div class="text-2xl font-bold uppercase mb-6">ccer team</div>
+        <div  class="text-2xl font-bold uppercase mb-6">Manage teams</div>
     </div>
 
     <table class="w-full table-auto rounded-sm">
@@ -23,18 +21,6 @@
                        {{$team->name}}
                     </a>
                 </td>
-                <td
-                class="px-4 py-8 border-t border-b border-gray-300 text-lg"
-            >
-                <a
-                    href="/teams/{{$team->id}}/add_player"
-                    class="text-blue-400 px-6 py-2 rounded-xl"
-                    ><i
-                        class="fa-solid fa-pen-to-square"
-                    ></i>
-                    Add player</a
-                >
-            </td>
                 <td
                     class="px-4 py-8 border-t border-b border-gray-300 text-lg"
                 >
@@ -60,9 +46,9 @@
             </tr>
             @endforeach
             @else
-            <tr class="border gray 300">
-                <td class="px-4 py08 border-t border-b">
-                    <p>No teams assigned to this user!</p>
+            <tr class="border-gray-300">
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+                    <p class="text-center">No teams assigned to this user!</p>
                 </td>
             </tr>
            @endunless
