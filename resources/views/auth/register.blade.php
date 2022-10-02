@@ -1,10 +1,15 @@
+@extends('layout')
+
+@section('content')
+
+
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+    <div class="text-center">
+    <h2 class="text-xl font-bold uppercase mb-1">
+    Register a new user
+    </h2>
+</div>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
@@ -12,11 +17,17 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- First and Last Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="name" :value="__('First name')" />
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
+            </div>
+
+            <div>
+                <x-input-label for="name" :value="__('Last name')" />
+
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
             </div>
 
             <!-- Email Address -->
@@ -57,3 +68,5 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+
+@endsection
